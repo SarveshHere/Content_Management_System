@@ -66,7 +66,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage }).single("myImage");
 
-mongoose.connect("mongodb://127.0.0.1:27017/cmsDB2");
+mongoose.connect(process.env.DB_URL);
 
 const categorySchema = new mongoose.Schema({
     name: String,
@@ -943,6 +943,6 @@ app.post("/passwordReset", async function (req, res) {
 });
 
 
-app.listen(3000, function () {
-    console.log("Connected");
+app.listen(process.env.PORT, function () {
+    console.log(`Connected ${process.env.PORT}`);
 });
